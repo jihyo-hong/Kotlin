@@ -1,0 +1,68 @@
+코틀린 2일차
+<<버튼 만들기>>
+1. xml 파일에 버튼 객체 생성(이때 자석 누르면 연결선 자동 생성!)
+   xml 파일에서 Code 창을 보면 xml 코드가 나옴
+
+2. kt 파일에 버튼을 동작시키기 위한 코드 추가
+   - button.setOnClickListener -> 에러 뜸!
+     import kotlinx.android.synthetic.main.activity_main.* 해야 함
+     (xml 파일에 있는 것들의 id 속성을 참조하겠다는 의미)
+   - Toast.makeText(context, text, duration) -> 마찬가지로 에러이므로 import 필요!
+     android.widget 패키지에 들어 있는 모듈(?)임
+     약간 그 토스트기 느낌으로 잠깐 나타났다가 사라지는 메시지 위젯
+     LENGTH_SHORT는 2초, LENGTH_LONG은 3초
+
+3. 에뮬레이터에 앱 실행
+   했는데 안 되어서 당황(오류: 'Kotlin-android-extensions' Gradle plugin is no longer supported)
+   익스텐션이란 화면에 있는 뷰(객체)의 id를 바로 참조할 수 있게 해 주는 기능인데,
+   안드로이드 스튜디오의 최근 버전은 해당 기능을 지원하지 않음
+   - 코틀린에서만 지원하기 때문
+   - id가 겹치는 경우
+   - null 허용 여부를 알려 주지 않음
+   대신 뷰 바인딩(view binding: 뷰들을 묶는 것)을 지원함!
+   - 자동 형변환: type-safe
+   - null-safe
+
+3-1. 뷰 바인딩
+   먼저 gradle (:app) 파일에서 설정해 주어야 하는 것들이 있음
+   import 'kotlin-parcelize'
+   buildFeatures { viewBinding true }
+   viewBinding { enabled true }: 이렇게 하면 xml마다 바인딩 클래스가 생성됨
+   minifyEnabled = true
+   설정이 다 끝났다면 kt 파일로 넘어감
+   - 먼저 뷰 바인딩 객체 생성
+     lateinit var binding: ActivityMainBinding
+     원래 코틀린은 변수 선언과 동시에 null로라도 초기화를 해 주어야 하는데 lateinit을 쓰면 나중에 초기화 가능!
+     private으로 선언 안 하면 프롬프트 나옴
+   - 바인딩 객체 초기화
+     binding = ActivityMainBinding.inflate(layoutInflater)
+     인플레이션: xml에 정의된 레이아웃을 메모리에 올려주는 역할
+               = 뷰를 객체로 반환
+   - xml을 화면에 띄움
+     setContentView(binding.root)
+     binding.root는 xml을 감싸는 최상위 property
+   이제 xml에 들어 있는 뷰들을 id를 이용해 자유롭게 참조해 쓸 수 있음!
+   요약하자면 각 xml 파일마다 바인딩 객체(해당 클래스 타입의)를 만들 수 있고,
+   이 객체는 레이아웃에 들어 있는 모든 view들을 property로 가짐
+   그래서 id로 참조 가능!
+
+<<참고>>
+* var(가변) val(불변)
+* 변수 이름: 변수 타입
+* id.text.toString(): 텍스트를 가져와 문자열로 변환
+* id.setText(${}): 텍스트 표시 -> getString을 사용하길 권장
+
+<<레이아웃>>
+- 다른 것들을 담아두는 역할을 하면서 배치도 도와줌
+- 눈에 보이지 않음 <-> 위젯
+- ConstraintLayout: 최상위 레이아웃(다른 걸 다 날려도 남아 있음!)
+- 레이아웃을 바꾸는 방법: Component Tree 창에서 Convert View
+- LinearLayout: 일정한 방향으로 위젯들을 배치할 수 있게 해 줌
+                orientation(vertical, horizontal) 설정 필요
+- layout_width/height: match_parent(꽉 채움) / wrap_content(차지하는 공간만 채움)
+- 레이아웃을 어떻게 설정하는 게 좋은지는 더 공부해 봐야겠다(약간 div 느낌..)
+
+<<자바와의 차이점>>
+- findViewById <-> viewBinding
+
+
