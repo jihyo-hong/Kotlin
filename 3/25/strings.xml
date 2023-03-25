@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">March25</string>
+    <string name="nameInput">이름</string>
+    <string name="mobileInput">전화번호</string>
+    <string name="certify">확인</string>
+    <string name="value1">숫자1</string>
+    <string name="value2">숫자2</string>
+    <string name="add">더하기</string>
+    <string name="sub">빼기</string>
+    <string name="mul">곱하기</string>
+    <string name="div">나누기</string>
+    <string name="result">결과</string>
+</resources>
