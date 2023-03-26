@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">March26</string>
+    <string name="value1">숫자 1</string>
+    <string name="value2">숫자 2</string>
+    <string name="addButton">더하기</string>
+    <string name="subButton">빼기</string>
+    <string name="mulButton">곱하기</string>
+    <string name="divButton">나누기</string>
+    <string name="result">결과: </string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="zero">0</string>
+</resources>
