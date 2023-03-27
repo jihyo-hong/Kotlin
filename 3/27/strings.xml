@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">March27</string>
+    <string name="bus_name">노선 이름: </string>
+    <string name="bus_interval">배차 간격: </string>
+    <string name="bus_color">버스 색상: </string>
+    <string name="bus_default_name">시내버스 300</string>
+    <string name="bus_default_interval">30</string>
+    <string name="bus_default_color">파랑</string>
+    <string name="bus_general">일반버스</string>
+    <string name="bus_electric">전기버스</string>
+    <string name="drival_velocity">운행 속도: </string>
+    <string name="drive_start">운행 시작</string>
+    <string name="accel">가속</string>
+</resources>
